@@ -18,4 +18,8 @@ public class ProductService {
 		  
 		  return product;
 	  }
+	public  List<Product> viewAllProducts() {
+		List<Product> list=pr.findAll();
+		return list;
+	  }
 }
