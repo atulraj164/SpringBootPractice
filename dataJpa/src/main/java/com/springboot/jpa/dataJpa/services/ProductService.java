@@ -57,11 +57,38 @@ public List<ProductResponseDto> deleteByPrice(double id) {
 			   }
 			   return ResponseDto;
 	  }
-	  
-	  
-public  List<Product> viewAllProducts() {
-		List<Product> list=pr.findAll();
-		return list;
+	
+	
+public List<ProductResponseDto> findByColor(String color){
+		  List<Product> products=pr.findByColor(color);
+		  List<ProductResponseDto> ResponseDto=new ArrayList<>();
+		  
+		   for(Product product:products) {
+			   
+		   ProductResponseDto ResponseDtos=new ProductResponseDto(product);
+			 ResponseDto.add(ResponseDtos);
+		   }
+		return ResponseDto;
+		  
 	  }
+	  
+
+	  
+
+public  List<ProductResponseDto> viewAllProducts() {
+	
+		List<Product> products=pr.findAll();
+		
+	    List<ProductResponseDto> ResponseDto=new ArrayList<>();
+		 
+		   for(Product product:products) {
+			   
+		     ProductResponseDto ResponseDtos=new ProductResponseDto(product);
+			 ResponseDto.add(ResponseDtos);
+		   }
+		return ResponseDto;
+	  }
+
+  
 
 }
