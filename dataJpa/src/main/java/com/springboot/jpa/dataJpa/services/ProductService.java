@@ -23,18 +23,14 @@ public class ProductService {
 		  return new ProductResponseDto(product);
 	  }
 	  
-	public List<ProductResponseDto> saveAllProduct(List<ProductRequestDto> request) {
-		  List<Product> products=request.stream()
-				  .map(p->new Product(p))
-				  .collect(Collectors.toList());
-		  
-		   pr.saveAll(products);
+public List<ProductResponseDto> saveAllProduct(List<ProductRequestDto> request) {
+	 List<Product> products=pr.saveAll(request.stream()
+					    .map(p->new Product(p))
+					    .collect(Collectors.toList()));
 		   
-		   List<ProductResponseDto> ResponseDto=
-				    products.stream()
+                  return  products.stream()
 				   .map(p->new ProductResponseDto(p))
 				   .collect(Collectors.toList());
-		   return ResponseDto;
 
 	  }
 	  	  
