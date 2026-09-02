@@ -17,28 +17,10 @@ import com.springboot.jpa.dataJpa.Repository.ProductRespository;
 public class ProductService {
 	@Autowired
 	ProductRespository pr;
-	
-	  public ProductResponseDto saveProduct(ProductRequestDto RequestDto) {
-		  
-		Product product=new Product();
-		product.setColor(RequestDto.getColor());
-		product.setId(RequestDto.getId());
-		product.setName(RequestDto.getName());
-		product.setPrice(RequestDto.getPrice());
-		product.setQuantity(RequestDto.getQuantity());
-		
-		pr.save(product);
-		
-		
-		 ProductResponseDto ResponseDto=new ProductResponseDto();
-		 ResponseDto.setColor(product.getColor());
-		 ResponseDto.setName(product.getName());
-		 ResponseDto.setId(product.getId());
-		 ResponseDto.setPrice(product.getPrice());
-		 ResponseDto.setQuantity(product.getQuantity());
-		return ResponseDto;
+	  public ProductResponseDto saveProduct(ProductRequestDto request) {
+		  Product product=pr.save(new Product(request));
+		  return new ProductResponseDto(product);
 	  }
-	  
 	  
 	  public List<ProductResponseDto> saveAllProduct(List<ProductRequestDto> RequestDto) {
 		  List<Product> products=new ArrayList<>();
