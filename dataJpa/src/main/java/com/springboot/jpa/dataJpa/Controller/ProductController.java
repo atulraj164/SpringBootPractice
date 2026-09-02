@@ -54,6 +54,9 @@ public class ProductController {
 		return service.viewAllProducts();
 	}
 	
-	
+	@GetMapping("/getProductByColor/{color}")
+	public List<ProductResponseDto> getProductByColor(@PathVariable String color) {
+		return service.findByColor(color);
+	}
 	
 }
