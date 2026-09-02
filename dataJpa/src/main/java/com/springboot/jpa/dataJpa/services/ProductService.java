@@ -44,6 +44,19 @@ public ProductResponseDto getProductById(int id) {
 		  ProductResponseDto responseDto=new ProductResponseDto(product);
 		  return responseDto; 
 	  }
+
+	
+@Transactional
+public List<ProductResponseDto> deleteByPrice(double id) {
+	
+		List<Product> products= pr.deleteByPrice(id);
+		List<ProductResponseDto> ResponseDto=new ArrayList<>();
+		  for(Product product:products) {	   
+			    ProductResponseDto ResponseDtos=new ProductResponseDto(product);
+				 ResponseDto.add(ResponseDtos);
+			   }
+			   return ResponseDto;
+	  }
 	  
 	  
 public  List<Product> viewAllProducts() {
