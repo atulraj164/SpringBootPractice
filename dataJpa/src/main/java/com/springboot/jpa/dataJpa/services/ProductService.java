@@ -23,20 +23,20 @@ public class ProductService {
 		  return new ProductResponseDto(product);
 	  }
 	  
-	 public List<ProductResponseDto> saveAllProduct(List<ProductRequestDto> RequestDto) {
-		  List<Product> products=new ArrayList<>();
-		   for (ProductRequestDto request : RequestDto) {
-				products.add(new Product(request));	
-		  }
+	public List<ProductResponseDto> saveAllProduct(List<ProductRequestDto> request) {
+		  List<Product> products=request.stream()
+				  .map(p->new Product(p))
+				  .collect(Collectors.toList());
+		  
 		   pr.saveAll(products);
 		   
-		   List<ProductResponseDto> ResponseDto=new ArrayList<>();
-		   for(Product product:products) {
-			 ResponseDto.add(new ProductResponseDto(product));
-		   }
+		   List<ProductResponseDto> ResponseDto=
+				    products.stream()
+				   .map(p->new ProductResponseDto(p))
+				   .collect(Collectors.toList());
 		   return ResponseDto;
+
 	  }
-	  
 	  	  
 public ProductResponseDto getProductById(int id) {
 		  Optional<Product> optional=pr.findById(id);
