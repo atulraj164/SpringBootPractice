@@ -58,5 +58,10 @@ public class ProductController {
 	public List<ProductResponseDto> getProductByColor(@PathVariable String color) {
 		return service.findByColor(color);
 	}
+	@PostMapping("/deleteByPrice/{price}")
+	public List<ProductResponseDto> deleteByPrice(@PathVariable double price) {
+		return service.deleteByPrice(price);
+	}
+	
 	
 }
