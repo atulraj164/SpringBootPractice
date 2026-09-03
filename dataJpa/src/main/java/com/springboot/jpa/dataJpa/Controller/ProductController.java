@@ -25,12 +25,18 @@ public class ProductController {
 	
 	
 	
-	@GetMapping("/test")
+@GetMapping("/test")
+	public ResponseEntity<String> get() {
+		return  ResponseEntity
+				.status(HttpStatus.OK)
+				.body("system Working");
+	}
 	@GetMapping("/checkException")
 	public String checkException() {
 		String s=null;
 		return  s.trim();
 	}
+	
 	@PostMapping("/RegisterProduct")
 	public ProductResponseDto registerProduct(@RequestBody ProductRequestDto ProductRequest) {
 		ProductResponseDto response=service.saveProduct(ProductRequest);
