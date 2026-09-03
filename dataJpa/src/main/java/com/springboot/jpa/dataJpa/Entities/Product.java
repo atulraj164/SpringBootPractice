@@ -12,4 +12,15 @@ public class Product {
     private String name;
     private String color;
     private double price;
+
+	 public Product() {
+    }
+    
+    public Product(ProductRequestDto request) {
+    	this.id=request.getId();
+    	this.color=request.getColor();
+    	this.name=request.getName();
+    	this.price=request.getPrice();
+    	this.quantity=request.getQuantity();
+    }
 }
