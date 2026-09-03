@@ -26,11 +26,11 @@ public class ProductController {
 	
 	
 	@GetMapping("/test")
-	public String get() {
-		System.out.println("system working");
-		return "system working";
+	@GetMapping("/checkException")
+	public String checkException() {
+		String s=null;
+		return  s.trim();
 	}
-	
 	@PostMapping("/RegisterProduct")
 	public ProductResponseDto registerProduct(@RequestBody ProductRequestDto ProductRequest) {
 		ProductResponseDto response=service.saveProduct(ProductRequest);
