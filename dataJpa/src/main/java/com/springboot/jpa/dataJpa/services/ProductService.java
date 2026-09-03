@@ -35,12 +35,16 @@ public List<ProductResponseDto> saveAllProduct(List<ProductRequestDto> request) 
 	  }
 	  	  
 public ProductResponseDto getProductById(int id) {
+	
 		  Optional<Product> optional=pr.findById(id);
-		  Product product=optional.get();
-		  ProductResponseDto responseDto=new ProductResponseDto(product);
-		  return responseDto; 
+		  if(optional.isEmpty()) {
+			 throw new BadIdException("no such Id Exists");
+		  }
+		  Product product=optional.get();  
+		  return new ProductResponseDto(product);
+		  
 	  }
-
+	  
 	
 @Transactional
 public List<ProductResponseDto> deleteByPrice(double id) {
