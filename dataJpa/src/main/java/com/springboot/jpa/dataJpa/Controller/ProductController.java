@@ -68,6 +68,11 @@ public class ProductController {
 	public List<ProductResponseDto> deleteByPrice(@PathVariable double price) {
 		return service.deleteByPrice(price);
 	}
-	
+	@GetMapping("/IndexOutOfBoundsExceptionTest")
+	public Integer IndexOutOfBoundsExceptionTest() {
+		int[] arr=new int[5];
+		arr[6]=9;
+		return null;
+	}
 	
 }
