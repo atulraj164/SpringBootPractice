@@ -24,14 +24,12 @@ public class ProductService {
 	  }
 	  
 public List<ProductResponseDto> saveAllProduct(List<ProductRequestDto> request) {
-	 List<Product> products=pr.saveAll(request.stream()
+  return pr.saveAll(request.stream()
 					    .map(p->new Product(p))
-					    .collect(Collectors.toList()));
-		   
-                  return  products.stream()
-				   .map(p->new ProductResponseDto(p))
-				   .collect(Collectors.toList());
-
+					    .collect(Collectors.toList()))
+			            .stream()
+	                    .map(p->new ProductResponseDto(p))
+	                    .collect(Collectors.toList());
 	  }
 	  	  
 public ProductResponseDto getProductById(int id) {
@@ -48,46 +46,34 @@ public ProductResponseDto getProductById(int id) {
 	
 @Transactional
 public List<ProductResponseDto> deleteByPrice(double id) {
-	
-		List<Product> products= pr.deleteByPrice(id);
-		List<ProductResponseDto> ResponseDto=new ArrayList<>();
-		  for(Product product:products) {	   
-			    ProductResponseDto ResponseDtos=new ProductResponseDto(product);
-				 ResponseDto.add(ResponseDtos);
-			   }
-			   return ResponseDto;
+		return  pr.deleteByPrice(id).stream()
+				.map(p->new ProductResponseDto(p))
+				.collect(Collectors.toList());
 	  }
+	  
 	
-	
+	  
 public List<ProductResponseDto> findByColor(String color){
-		  List<Product> products=pr.findByColor(color);
-		  List<ProductResponseDto> ResponseDto=new ArrayList<>();
-		  
-		   for(Product product:products) {
-			   
-		   ProductResponseDto ResponseDtos=new ProductResponseDto(product);
-			 ResponseDto.add(ResponseDtos);
-		   }
-		return ResponseDto;
-		  
+		
+		return  pr.findByColor(color)
+				 .stream()
+				.map(p->new ProductResponseDto(p))
+				.collect(Collectors.toList());	  
 	  }
 	  
 
-	  
 
 public  List<ProductResponseDto> viewAllProducts() {
 	
-		List<Product> products=pr.findAll();
-		
-	    List<ProductResponseDto> ResponseDto=new ArrayList<>();
+	  return pr.findAll()
+			  .stream()
+			  .map(p->new ProductResponseDto(p))
+			  .collect(Collectors.toList());
 		 
-		   for(Product product:products) {
-			   
-		     ProductResponseDto ResponseDtos=new ProductResponseDto(product);
-			 ResponseDto.add(ResponseDtos);
-		   }
-		return ResponseDto;
 	  }
+
+  
+
 
   
 
