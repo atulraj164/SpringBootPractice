@@ -14,7 +14,7 @@ public class SecurityApplication {
 		ConfigurableEnvironment ce=ac.getEnvironment();
 		
 	
-		System.out.println(ce.getProperty("application.name"));
+		System.out.println(ce.getProperty("spring.application.name"));
 		System.out.println(ce.getProperty("server.port"));
 	}
 
