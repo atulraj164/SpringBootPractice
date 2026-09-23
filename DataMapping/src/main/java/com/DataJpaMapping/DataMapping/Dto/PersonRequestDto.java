@@ -23,4 +23,4 @@ public class PersonRequestDto {
 		private String name;
 	    
 		private AdharRequstDto adhar;
-}
+}//personDto
