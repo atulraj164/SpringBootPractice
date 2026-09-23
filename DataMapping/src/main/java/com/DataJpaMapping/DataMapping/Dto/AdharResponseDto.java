@@ -16,4 +16,4 @@ public class AdharResponseDto {
 	private Long id;
     private String fathersName;
     private Person person;
-}
+}//response dto
