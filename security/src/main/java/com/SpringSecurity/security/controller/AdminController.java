@@ -13,5 +13,7 @@ public class AdminController {
 	public String getAdmin() {
 		return "this is admin";
 	}
-
+   
+	
+	
 }

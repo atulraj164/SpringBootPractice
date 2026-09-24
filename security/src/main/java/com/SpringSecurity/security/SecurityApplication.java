@@ -8,7 +8,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 @SpringBootApplication
 public class SecurityApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) { 
 		
 		ConfigurableApplicationContext ac=SpringApplication.run(SecurityApplication.class, args);
 		ConfigurableEnvironment ce=ac.getEnvironment();
@@ -18,4 +18,4 @@ public class SecurityApplication {
 		System.out.println(ce.getProperty("server.port"));
 	}
 
-}
+} 

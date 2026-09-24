@@ -1,0 +1,50 @@
+package com.SpringSecurity.security.config;
+
+import java.net.http.HttpRequest;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+public class MySpringSecurityConfig {
+  
+	@Bean
+	public UserDetailsService userDetailService() {
+		UserDetails user1=User.withUsername("Atul").password(encoder()
+				.encode("atul@123")).roles("USER").build();
+		UserDetails admin1=User.withUsername("dev").password(encoder()
+				.encode("dev@123")).roles("ADMIN").build();
+		return new InMemoryUserDetailsManager(user1,admin1);
+	}
+
+	
+	
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) {
+		http//csrf(csrf->csrf.disable())
+		.authorizeHttpRequests(a->a.requestMatchers("/admin/**")
+		.hasRole("ADMIN")
+		.requestMatchers("/user/**").hasRole("USER")
+		.requestMatchers("/auth/**").permitAll()
+		.anyRequest().authenticated())
+		.httpBasic(Customizer.withDefaults())
+		.formLogin(Customizer.withDefaults());
+		
+		return http.build();
+		
+	}
+	
+	@Bean
+	public PasswordEncoder encoder() { 
+		return new BCryptPasswordEncoder();
+	}
+}
