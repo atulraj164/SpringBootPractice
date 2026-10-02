@@ -22,13 +22,13 @@ public class ProductController {
         return "this is my first product";
     }
 
-    @GetMapping("/AddTwoNumbers/{a}/{b}")
+    @GetMapping("/AddTwoNumbers/{a}/{b}")//path variable
     public Integer addTwoNumbers(@PathVariable Integer a,
                                  @PathVariable Integer b) {
         return a + b;
     }
 
-    @GetMapping("/MulTwoNumbers")
+    @GetMapping("/MulTwoNumbers")//reciing parameters by  String query
     public Integer mulTwoNumbers(@RequestParam Integer a,
                                  @RequestParam Integer b) {
         return a * b;
