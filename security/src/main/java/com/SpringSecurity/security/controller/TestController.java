@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/test")
 public class TestController {
       
-	@GetMapping("/TestSecurity")
+	@GetMapping("/TestSecurity") //testing of working
 	
 	public String TestSecurity() {
 		return "security tested";
